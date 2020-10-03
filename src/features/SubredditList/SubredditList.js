@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
+import { Waypoint } from 'react-waypoint';
 import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { fetchSubredditsIfNeeded } from './action';
 
@@ -37,10 +39,9 @@ export class SubredditList extends Component {
   }
 
   renderSidebarMenu = () => {
-    const { isFetching, error, value } = this.props.subreddits;
+    const { error, value } = this.props.subreddits;
     return (
       <div>
-        { isFetching ? <p>loading...</p> : null }
         { error ? <p>error</p> : null }
         {
           value ?
@@ -56,7 +57,19 @@ export class SubredditList extends Component {
     );
   }
 
+  renderWaypoint = () => {
+    const { value } = this.props.subreddits;
+
+    if (value && value.length > 0) {
+      return (<Waypoint
+        onEnter={() => this.loadSubreddit()}
+      />);
+    }
+    return null;
+  }
+
   render() {
+    const { isFetching } = this.props.subreddits;
     return (
       <List>
         <Link component={RouterLink} to="/" title="all">
@@ -65,6 +78,8 @@ export class SubredditList extends Component {
           </ListItem>
         </Link>
         {this.renderSidebarMenu()}
+        {this.renderWaypoint()}
+        { isFetching ? <CircularProgress style={{ display: 'block', margin: 'auto' }} color="secondary" /> : ''}
       </List>
     );
   }

@@ -44,12 +44,11 @@ export class Feed extends Component {
   }
 
   loadFeed = (subreddit = false) => {
-    const { dispatch } = this.props;
+    const { dispatch, match } = this.props;
     const params = {
-      subreddit: this.props.match.params.subreddit,
+      subreddit: match.params.subreddit,
       listing: 'top',
     };
-    console.log('params', params);
 
     if (subreddit) {
       params.subreddit = subreddit;
@@ -59,13 +58,12 @@ export class Feed extends Component {
   }
 
   render() {
-    const { feed } = this.props;
-    console.log('this.props.match.params.subreddit', this.props.match.params.subreddit);
+    const { feed, match } = this.props;
     return (
       <div>
         <Grid container justify="center">
           <Grid item xs={12} sm={8}>
-            {feed[this.props.match.params.subreddit] ? <FeedList list={feed[this.props.match.params.subreddit]} /> : null}
+            {feed[match.params.subreddit] ? <FeedList list={feed[match.params.subreddit]} nextPage={this.loadFeed} /> : null}
           </Grid>
         </Grid>
       </div>

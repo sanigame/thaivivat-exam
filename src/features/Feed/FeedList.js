@@ -3,12 +3,15 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Waypoint } from 'react-waypoint';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import FeedItem from './FeedItem';
 
 class FeedList extends Component {
   static propTypes = {
     list: PropTypes.object,
-    // nextPage: PropTypes.func.isRequired,
+    nextPage: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -18,11 +21,10 @@ class FeedList extends Component {
   }
 
   renderList = () => {
-    const { isFetching, error, value } = this.props.list;
+    const { error, value } = this.props.list;
 
     return (
       <div>
-        {isFetching ? <p>loading</p> : null}
         {error ? error.message : null}
         {value ?
           value.map(feed => (
@@ -33,10 +35,25 @@ class FeedList extends Component {
     );
   }
 
+  renderWaypoint = () => {
+    const { value } = this.props.list;
+    if (value && value.length > 0) {
+      return (
+        <Waypoint
+          onEnter={() => this.props.nextPage()}
+        />
+      );
+    }
+    return null;
+  }
+
   render() {
+    const { isFetching } = this.props.list;
     return (
       <div>
         {this.renderList()}
+        {this.renderWaypoint()}
+        { isFetching ? <CircularProgress style={{ display: 'block', margin: 'auto' }} color="secondary" /> : ''}
       </div>
     );
   }
