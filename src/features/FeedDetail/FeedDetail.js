@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
 
 import { fetchFeedDetailIfNeeded } from './action';
 import { getDetailByName } from './reducer';
@@ -35,9 +36,14 @@ export class FeedDetail extends Component {
     const { isFetching, error, value } = this.props.feedDetail;
     return (
       <div>
-        {isFetching ? <p>loading</p> : ''}
-        {error ? <p>error</p> : ''}
-        {value ? <MediaCard detail={value} /> : ''}
+        <Grid container justify="center">
+          <Grid item xs={12} sm={8}>
+            {isFetching ? <p>loading</p> : ''}
+            {error ? <p>error</p> : ''}
+            {value ? <MediaCard detail={value} /> : ''}
+          </Grid>
+        </Grid>
+
       </div>
     );
   }

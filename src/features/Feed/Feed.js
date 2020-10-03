@@ -45,7 +45,7 @@ export class Feed extends Component {
     const { dispatch } = this.props;
     const params = {
       subreddit: this.props.params.subreddit,
-      listing: 'hot',
+      listing: 'top',
     };
 
     if (subreddit) {
