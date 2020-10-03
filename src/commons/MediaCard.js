@@ -7,7 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const styles = {
   card: {
@@ -21,12 +21,17 @@ const styles = {
 
 const MediaCard = ({ classes, detail }) => (
   <Card className={classes.card}>
-    <CardActionArea>
-      <CardMedia
-        className={classes.media}
-        image={detail.thumbnail}
-        title={detail.title}
-      />
+    <CardActionArea component={Link} to={`/content/${detail.name}`}>
+      {
+        detail.preview ?
+          <CardMedia
+            className={classes.media}
+            image={detail.thumbnail}
+            title={detail.title}
+          /> :
+      null
+      }
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {detail.subreddit}
@@ -34,6 +39,12 @@ const MediaCard = ({ classes, detail }) => (
         <Typography component="p">
           {detail.title}
         </Typography>
+        {
+          detail.description ?
+            <Typography component="p">
+              {detail.description}
+            </Typography> : null
+        }
       </CardContent>
     </CardActionArea>
   </Card>
