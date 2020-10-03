@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { fetchFeedDetailIfNeeded } from './action';
 import { getDetailByName } from './reducer';
@@ -37,7 +38,7 @@ export class FeedDetail extends Component {
       <div>
         <Grid container justify="center">
           <Grid item xs={12} sm={8}>
-            {isFetching ? <p>loading</p> : ''}
+            {isFetching ? <CircularProgress style={{ display: 'block', margin: 'auto' }} color="secondary" /> : ''}
             {error ? <p>error</p> : ''}
             {value ? <MediaCard detail={value} /> : ''}
           </Grid>

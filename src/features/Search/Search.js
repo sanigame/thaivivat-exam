@@ -41,7 +41,6 @@ export class Search extends Component {
 Search = reduxForm({
   form: 'searchForm',
   onSubmit: (value, dispatch) => {
-    console.log('value', value);
     dispatch(fetchFeedSearch({ subreddit: 'all', keyword: value.keyword }));
     // dispatch(reset('searchForm'));
   },

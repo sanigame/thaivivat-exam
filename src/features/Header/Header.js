@@ -57,18 +57,17 @@ export class Header extends Component {
     }
   }
 
-  renderTitle = ({ pathValue }) =>
+  renderTitle = () =>
     (
       <Typography variant="h6" color="inherit" noWrap>
-        { pathValue }
+        Thaivivat exam
       </Typography>
     )
 
   render() {
-    const { pathValue } = this.props.selected;
     return (
       <div>
-        {this.renderTitle({ pathValue })}
+        {this.renderTitle()}
       </div>
     );
   }
