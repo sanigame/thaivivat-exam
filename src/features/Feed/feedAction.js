@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 
 import { fetchSubredditIfNeeded } from './subredditDetailAction';
 
@@ -58,7 +59,7 @@ function fetchFeed(state, options, axios) {
 
 const shouldFetchFeed = (state, options) => {
   const feed = state.feed[options.subreddit];
-  if (!feed || feed.error || (feed.after_all.indexOf(feed.after_current) === -1)) {
+  if (!feed || feed.error || (feed.after_all.indexOf(feed.after_current) == -1)) {
     return true;
   }
   return false;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/prefer-stateless-function */
@@ -6,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 
+import FeedList from './FeedList';
 import { fetchFeedIfNeeded } from './feedAction';
 
 export class Feed extends Component {
@@ -22,7 +24,7 @@ export class Feed extends Component {
   }
 
   static fetchData({ dispatch }, params) {
-    return dispatch(fetchFeedIfNeeded(params));
+    return dispatch(fetchFeedIfNeeded(params, { listing: 'hot' }));
   }
 
 
@@ -55,11 +57,12 @@ export class Feed extends Component {
 
 
   render() {
+    const { feed } = this.props;
     return (
       <div>
         <Grid container spacing={24}>
           <Grid item xs={12} sm={6}>
-                x
+            {feed[this.props.params.subreddit] ? <FeedList list={feed[this.props.params.subreddit]} /> : null}
           </Grid>
         </Grid>
       </div>
@@ -68,7 +71,7 @@ export class Feed extends Component {
 }
 
 const mapStateToProps = state => ({
-  feed: state.feed,
+  feed: state.feed || {},
   subreddit: state.subreddit,
 });
 

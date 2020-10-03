@@ -11,7 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 
-import { SubredditList } from '../features';
+import { SubredditList, Header } from '../features';
 
 const drawerWidth = 240;
 
@@ -80,7 +80,7 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Header /> */}
+            <Header />
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
