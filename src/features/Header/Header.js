@@ -57,20 +57,18 @@ export class Header extends Component {
     }
   }
 
-  renderTitle = ({ isFetching, value }) =>
+  renderTitle = ({ pathValue }) =>
     (
       <Typography variant="h6" color="inherit" noWrap>
-        {
-          isFetching ? 'loading...' : value
-        }
+        { pathValue }
       </Typography>
     )
 
   render() {
-    const { isFetching, value } = this.props.subreddit;
+    const { pathValue } = this.props.selected;
     return (
       <div>
-        {this.renderTitle({ isFetching, value })}
+        {this.renderTitle({ pathValue })}
       </div>
     );
   }
