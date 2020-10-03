@@ -55,13 +55,12 @@ export class Feed extends Component {
     Feed.fetchData({ dispatch }, params);
   }
 
-
   render() {
     const { feed } = this.props;
     return (
       <div>
-        <Grid container spacing={24}>
-          <Grid item xs={12} sm={6}>
+        <Grid container justify="center">
+          <Grid item xs={12} sm={8}>
             {feed[this.props.params.subreddit] ? <FeedList list={feed[this.props.params.subreddit]} /> : null}
           </Grid>
         </Grid>

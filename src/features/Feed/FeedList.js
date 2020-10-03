@@ -2,11 +2,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FeedItem from './FeedItem';
 
 class FeedList extends Component {
   static propTypes = {
-    // list: PropTypes.object,
+    list: PropTypes.object,
     // nextPage: PropTypes.func.isRequired,
   }
 
@@ -18,7 +19,6 @@ class FeedList extends Component {
 
   renderList = () => {
     const { isFetching, value } = this.props.list;
-    console.log('value', value);
 
     return (
       <div>
