@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PermanentDrawerLeft from './PermanentDrawerLeft';
+// import PermanentDrawerLeft from './PermanentDrawerLeft';
+import ResponsiveDrawer from './ResponsiveDrawer';
 
 export default function Layout({ children }) {
   return (
-    <PermanentDrawerLeft>
+    <ResponsiveDrawer>
       {children}
-    </PermanentDrawerLeft>
+    </ResponsiveDrawer>
   );
 }
 

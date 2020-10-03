@@ -206,8 +206,10 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
+    "react-waypoint": "^9.0.3",
     "redbox-react": "^1.5.0",
     "redux": "^3.7.2",
+    "redux-form": "^8.3.6",
     "redux-thunk": "^2.2.0",
     "serialize-javascript": "^1.4.0",
     "webpack-isomorphic-tools": "^3.0.5"

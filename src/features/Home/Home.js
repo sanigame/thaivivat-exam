@@ -1,9 +1,13 @@
 import React from 'react';
+import { Feed } from '../Feed';
+import { Search } from '../Search';
 
 function Home() {
   return (
     <div>
-      Home
+      <Search />
+      <br />
+      <Feed />
     </div>
   );
 }
