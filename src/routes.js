@@ -1,4 +1,5 @@
-import { Home, FeedDetail, Feed, NotFound, feedDetailAction } from './features';
+import { Home, FeedDetail, Feed, NotFound } from './features';
+import { fetchFeedDetailIfNeeded } from './features/FeedDetail/action';
 
 export default [
   {
@@ -11,7 +12,7 @@ export default [
     exact: true,
     component: FeedDetail,
     loadData: (dispatch, params) => Promise.all([
-      dispatch(feedDetailAction.fetchFeedDetailIfNeeded(params.name)),
+      dispatch(fetchFeedDetailIfNeeded(params.name)),
     ]),
   },
   {
