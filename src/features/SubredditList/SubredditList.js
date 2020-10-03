@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import { fetchSubredditsIfNeeded } from './action';
 
@@ -38,7 +41,9 @@ export class SubredditList extends Component {
     return (
       value.map(subreddit => (
         <Link component={RouterLink} to={`/subreddit/${subreddit.data.display_name}`} title={subreddit.data.display_name} key={subreddit.data.id}>
-          {subreddit.data.display_name}
+          <ListItem button>
+            <ListItemText primary={subreddit.data.display_name} />
+          </ListItem>
         </Link>
       ))
     );
@@ -46,10 +51,14 @@ export class SubredditList extends Component {
 
   render() {
     return (
-      <div>
-        subreddit
+      <List>
+        <Link component={RouterLink} to="/" title="all">
+          <ListItem button>
+            <ListItemText primary="all" />
+          </ListItem>
+        </Link>
         {this.renderSidebarMenu()}
-      </div>
+      </List>
     );
   }
 }
