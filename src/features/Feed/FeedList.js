@@ -18,16 +18,16 @@ class FeedList extends Component {
   }
 
   renderList = () => {
-    const { isFetching, value } = this.props.list;
+    const { isFetching, error, value } = this.props.list;
 
     return (
       <div>
-        {
-          isFetching ?
-            <div>loading</div> :
-            value.map(feed => (
-              <FeedItem key={feed.data.id} detail={feed.data} />
-            ))
+        {isFetching ? <p>loading</p> : null}
+        {error ? error.message : null}
+        {value ?
+          value.map(feed => (
+            <FeedItem key={feed.data.id} detail={feed.data} />
+          )) : null
         }
       </div>
     );

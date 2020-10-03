@@ -1,4 +1,4 @@
-import { Home, FeedDetail, Feed, NotFound } from './features';
+import { Home, FeedDetail, Feed, NotFound, feedDetailAction } from './features';
 
 export default [
   {
@@ -10,6 +10,9 @@ export default [
     path: '/content/:name',
     exact: true,
     component: FeedDetail,
+    loadData: (dispatch, params) => Promise.all([
+      dispatch(feedDetailAction.fetchFeedDetailIfNeeded(params.name)),
+    ]),
   },
   {
     path: '/subreddit/:subreddit',

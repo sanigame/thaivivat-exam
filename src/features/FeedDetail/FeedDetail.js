@@ -12,7 +12,6 @@ import { MediaCard } from '../../commons';
 
 export class FeedDetail extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
     feedDetail: PropTypes.object,
     fetchDetail: PropTypes.func.isRequired,
     match: PropTypes.shape().isRequired,

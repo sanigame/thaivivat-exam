@@ -49,6 +49,7 @@ export class Feed extends Component {
       subreddit: this.props.match.params.subreddit,
       listing: 'top',
     };
+    console.log('params', params);
 
     if (subreddit) {
       params.subreddit = subreddit;
@@ -59,6 +60,7 @@ export class Feed extends Component {
 
   render() {
     const { feed } = this.props;
+    console.log('this.props.match.params.subreddit', this.props.match.params.subreddit);
     return (
       <div>
         <Grid container justify="center">

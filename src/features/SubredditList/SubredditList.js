@@ -37,15 +37,22 @@ export class SubredditList extends Component {
   }
 
   renderSidebarMenu = () => {
-    const { value } = this.props.subreddits;
+    const { isFetching, error, value } = this.props.subreddits;
     return (
-      value.map(subreddit => (
-        <Link component={RouterLink} to={`/subreddit/${subreddit.data.display_name}`} title={subreddit.data.display_name} key={subreddit.data.id}>
-          <ListItem button>
-            <ListItemText primary={subreddit.data.display_name} />
-          </ListItem>
-        </Link>
-      ))
+      <div>
+        { isFetching ? <p>loading...</p> : null }
+        { error ? <p>error</p> : null }
+        {
+          value ?
+          value.map(subreddit => (
+            <Link component={RouterLink} to={`/subreddit/${subreddit.data.display_name}`} title={subreddit.data.display_name} key={subreddit.data.id}>
+              <ListItem button>
+                <ListItemText primary={subreddit.data.display_name} />
+              </ListItem>
+            </Link>
+          )) : null
+        }
+      </div>
     );
   }
 
