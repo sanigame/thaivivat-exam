@@ -74,10 +74,7 @@ export class Header extends Component {
   }
 }
 
-const getSubredditOnNow = (state) => {
-  console.log('state.subreddit', state.subreddit);
-  return state.subreddit[state.selected.subreddit] || {};
-};
+const getSubredditOnNow = state => state.subreddit[state.selected.subreddit] || {};
 
 
 const mapStateToProps = state => ({

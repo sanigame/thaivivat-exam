@@ -13,13 +13,15 @@ import { fetchFeedIfNeeded } from './feedAction';
 export class Feed extends Component {
   static propTypes = {
     feed: PropTypes.object.isRequired,
-    params: PropTypes.object,
+    match: PropTypes.shape(),
     dispatch: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
-    params: {
-      subreddit: 'all',
+    match: {
+      params: {
+        subreddit: 'all',
+      },
     },
   }
 
@@ -30,21 +32,21 @@ export class Feed extends Component {
 
   componentDidMount() {
     const { feed } = this.props;
-    if (!feed[this.props.params.subreddit]) {
+    if (!feed[this.props.match.params.subreddit]) {
       this.loadFeed();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.subreddit !== this.props.params.subreddit) {
-      this.loadFeed(nextProps.params.subreddit);
+    if (nextProps.match.params.subreddit !== this.props.match.params.subreddit) {
+      this.loadFeed(nextProps.match.params.subreddit);
     }
   }
 
   loadFeed = (subreddit = false) => {
     const { dispatch } = this.props;
     const params = {
-      subreddit: this.props.params.subreddit,
+      subreddit: this.props.match.params.subreddit,
       listing: 'top',
     };
 
@@ -61,7 +63,7 @@ export class Feed extends Component {
       <div>
         <Grid container justify="center">
           <Grid item xs={12} sm={8}>
-            {feed[this.props.params.subreddit] ? <FeedList list={feed[this.props.params.subreddit]} /> : null}
+            {feed[this.props.match.params.subreddit] ? <FeedList list={feed[this.props.match.params.subreddit]} /> : null}
           </Grid>
         </Grid>
       </div>

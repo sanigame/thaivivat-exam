@@ -1,4 +1,4 @@
-import { Home, FeedDetail, NotFound } from './features';
+import { Home, FeedDetail, Feed, NotFound } from './features';
 
 export default [
   {
@@ -10,6 +10,11 @@ export default [
     path: '/content/:name',
     exact: true,
     component: FeedDetail,
+  },
+  {
+    path: '/subreddit/:subreddit',
+    exact: true,
+    component: Feed,
   },
   {
     path: '*',
