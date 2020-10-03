@@ -5,6 +5,8 @@ import {
   FETCH_FEED_FAILURE,
 } from './feedAction';
 
+import { SEARCH_FEED_SUCCESS } from '../Search/action';
+
 function feed(state = {}, action) {
   switch (action.type) {
     case FETCH_FEED_REQUEST:
@@ -16,7 +18,6 @@ function feed(state = {}, action) {
         },
       });
     case FETCH_FEED_SUCCESS:
-
       return Object.assign({}, state, {
         [action.subreddit]: {
           ...state[action.subreddit],
@@ -33,6 +34,17 @@ function feed(state = {}, action) {
           ...state[action.subreddit],
           isFetching: false,
           error: action.payload,
+        },
+      });
+    case SEARCH_FEED_SUCCESS:
+      return Object.assign({}, state, {
+        [action.subreddit]: {
+          ...state[action.subreddit],
+          isFetching: false,
+          error: false,
+          after_current: (action.payload.data.after === null) ? 'first' : action.payload.data.after,
+          after_all: (state.after_all instanceof Array) ? state.after_all.concat(state.after_current) : [],
+          value: action.payload.data.children,
         },
       });
     default:

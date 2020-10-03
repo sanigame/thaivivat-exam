@@ -6,9 +6,7 @@ export const FETCH_FEED_REQUEST = 'FETCH_FEED_REQUEST';
 export const FETCH_FEED_SUCCESS = 'FETCH_FEED_SUCCESS';
 export const FETCH_FEED_FAILURE = 'FETCH_FEED_FAILURE';
 
-function serialize(obj) {
-  return `?${Object.keys(obj).reduce((a, k) => { a.push(`${k}=${ encodeURIComponent(obj[k])}`); return a; }, []).join('&')}`;
-}
+const serialize = obj => `?${Object.keys(obj).reduce((a, k) => { a.push(`${k}=${ encodeURIComponent(obj[k])}`); return a; }, []).join('&')}`;
 
 function fetchFeedFailure(error, subreddit) {
   return {
